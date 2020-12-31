@@ -25,59 +25,21 @@ func convertToInches(fromMeter: Float) -> Float {
 convertToInches(fromMeter: 1.5)
 convertToInches(fromMeter: 0.4)
 
-//MARK:- Exercise questions2
-//Mission1 : Rectangle
-struct Rectangle {
-    let leftTopX: Float = 4.5
-    let leftTopY: Float = 10.5
-    let rightBottomX: Float = 15
-    let rightBottomY: Float = 3.5
-    
-    func printRect() {
-        print("(\(leftTopX), \(rightBottomY)), (\(leftTopX), \(leftTopY)) (\(rightBottomX), \(rightBottomY)), (\(rightBottomX), \(leftTopY))" )
-    }
-}
-
-//Mission2 : 호출하기
-let Rectangle1 = Rectangle()
-Rectangle1.printRect()
-
-//Mission3 : printArea()
-extension Rectangle {
-    func printArea() {
-        let a = rightBottomX-leftTopX
-        let b = leftTopY-rightBottomY
-        let area = (a*b)*(a*b)
-        print(sqrt(Double(area)))
-    }
-}
-
-Rectangle1.printArea()
-
-//Mission4 : Float형
-Rectangle1.printRect()
-
-//Mission5 : center
-
-extension Rectangle {
-    func printCenter() {
-        let x = (rightBottomX+leftTopX)/2
-        let y = (leftTopY+rightBottomY)/2
-        print("(\(x),\(y))")
-    }
-}
-
-Rectangle1.printCenter()
 
 //MARK:- Exercise questions3
-//Mission1 : MyPoint
+//Mission1,2 : MyPoint로 바꾸기, printPoints() 구현하기
 struct MyPoint {
     var myX: Float
     var myY: Float
     
     init() {
-        myX = 2.5
-        myY = 15.8
+        myX = 0
+        myY = 0
+    }
+    
+    init(x: Float, y: Float) {
+        myX = x
+        myY = y
     }
     
     func printPoint() {
@@ -85,35 +47,49 @@ struct MyPoint {
     }
 }
 
-var myPoint1 = MyPoint()
-myPoint1.printPoint()
+struct Rectangle {
+    var leftTop: MyPoint
+    var rightBottom: MyPoint
 
-//Mission2 : 메소드 추가하기
-extension MyPoint {
-    mutating func setX(x: Float) {
-        myX = x
+    init() {
+        leftTop = MyPoint()
+        rightBottom = MyPoint()
     }
     
-    mutating func setY(y: Float) {
-        myY = y
+    init(onePoint: MyPoint, width: Float, height: Float) {
+        leftTop = onePoint
+        leftTop.myY += height
+        rightBottom = onePoint
+        rightBottom.myX += width
+    
+    }
+    
+    func printRect() {
+        print("(\(leftTop.myX), \(rightBottom.myY)), (\(leftTop.myX), \(leftTop.myY)) (\(rightBottom.myX), \(rightBottom.myY)), (\(rightBottom.myX), \(leftTop.myY))" )
+    }
+    
+    func printPoint() {
+        print("(\(leftTop.myX), \(rightBottom.myY)), (\(leftTop.myX), \(leftTop.myY)) (\(rightBottom.myX), \(rightBottom.myY)), (\(rightBottom.myX), \(leftTop.myY))" )
+    }
+    
+}
+
+//Mission2 : printPoints() 구현하기
+var myPointB = MyPoint()
+myPointB.myX = 5
+myPointB.myY = 5
+var RectB = Rectangle(onePoint: myPointB, width: 5, height: 10)
+RectB.printPoint()
+
+//Mission3 : moveTo() 구현하기
+extension Rectangle {
+    mutating func moveTo(delta: MyPoint) {
+        leftTop.myX += delta.myX
+        leftTop.myY += delta.myY
+        rightBottom.myX += delta.myX
+        rightBottom.myY += delta.myY
     }
 }
 
-myPoint1.setX(x: 15.2)
-myPoint1.setY(y: 7.4)
-
-print("pointA =(\(myPoint1.myX), \(myPoint1.myY))")
-
-//Mission3 : 계산하기
-extension MyPoint {
-    func getDistanceTo(toPoint: MyPoint) -> Float{
-        let x = (myX-toPoint.myX)*(myX-toPoint.myX)
-        let y = (myY-toPoint.myY)*(myY-toPoint.myY)
-        return sqrt(x+y)
-    }
-}
-
-var pointB = MyPoint()
-pointB.setX(x: 15)
-pointB.setY(y: 12.2)
-print(myPoint1.getDistanceTo(toPoint: pointB))
+RectB.moveTo(delta: MyPoint(x: -3, y: 1.5))
+RectB.printRect()
