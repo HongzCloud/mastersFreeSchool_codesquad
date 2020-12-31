@@ -68,3 +68,52 @@ extension Rectangle {
 }
 
 Rectangle1.printCenter()
+
+//MARK:- Exercise questions3
+//Mission1 : MyPoint
+struct MyPoint {
+    var myX: Float
+    var myY: Float
+    
+    init() {
+        myX = 2.5
+        myY = 15.8
+    }
+    
+    func printPoint() {
+        print("(\(myX),\(myY))")
+    }
+}
+
+var myPoint1 = MyPoint()
+myPoint1.printPoint()
+
+//Mission2 : 메소드 추가하기
+extension MyPoint {
+    mutating func setX(x: Float) {
+        myX = x
+    }
+    
+    mutating func setY(y: Float) {
+        myY = y
+    }
+}
+
+myPoint1.setX(x: 15.2)
+myPoint1.setY(y: 7.4)
+
+print("pointA =(\(myPoint1.myX), \(myPoint1.myY))")
+
+//Mission3 : 계산하기
+extension MyPoint {
+    func getDistanceTo(toPoint: MyPoint) -> Float{
+        let x = (myX-toPoint.myX)*(myX-toPoint.myX)
+        let y = (myY-toPoint.myY)*(myY-toPoint.myY)
+        return sqrt(x+y)
+    }
+}
+
+var pointB = MyPoint()
+pointB.setX(x: 15)
+pointB.setY(y: 12.2)
+print(myPoint1.getDistanceTo(toPoint: pointB))
