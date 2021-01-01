@@ -23,3 +23,14 @@ for x in 1...9 {
     
     print("5 * \(x) = \(i)")
 }
+
+var n = 0
+
+while (n < 9) {
+    n += 1
+    print("6 * \(n) = \(6*n)")
+}
+
+for i in 1...9 {
+    print("7 * \(i) = \(7*i)")
+}
