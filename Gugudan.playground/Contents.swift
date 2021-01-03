@@ -4,7 +4,7 @@ var gugudan = [Int].init(repeating: 0, count: 9)
 var index = 0
 
 for i in gugudan {
-    // 계산 결과를 배열에 저장
+    //2단 계산 결과를 배열에 저장
     gugudan[index] = 2 * (index+1)
     index += 1
 }
