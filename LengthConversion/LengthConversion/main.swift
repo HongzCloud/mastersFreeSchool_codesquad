@@ -27,7 +27,7 @@ func convertToM(cm: String) -> String {
    
     //길이 단위를 바꿀 때 곱하거나 나누는 값은 바뀌지 않는 값이다. 따라서 상수 값으로 지정해서 프로그램을 구현한다.
     let convertFormulaNumber: Float = 100
-    let separatedInput = Float(data.components(separatedBy: "cm")[0])! / convertFormulaNumber
+    let separatedInput = Float(cm.components(separatedBy: "cm")[0])! / convertFormulaNumber
     let out: String = String(separatedInput) + "m"
     return out
 }
@@ -35,7 +35,7 @@ func convertToM(cm: String) -> String {
 func convertToCM(m: String) -> String {
     //길이 단위를 바꿀 때 곱하거나 나누는 값은 바뀌지 않는 값이다. 따라서 상수 값으로 지정해서 프로그램을 구현한다.
     let convertFormulaNumber: Float = 100
-    let separatedInput = Float(data.components(separatedBy: "cm")[0])! * convertFormulaNumber
+    let separatedInput = Float(m.components(separatedBy: "cm")[0])! * convertFormulaNumber
     let out: String = String(separatedInput) + "cm"
     return out
 }
@@ -54,3 +54,6 @@ func lengthConverter(_ input: String) {
 }
 
 lengthConverter(data)
+//사용자가 길이 값을 입력하고 변수에 저장하도록 한다.
+let inputData = readLine()
+lengthConverter(inputData ?? "")
