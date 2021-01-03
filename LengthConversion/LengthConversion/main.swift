@@ -110,13 +110,13 @@ func lengthConverter(_ input: String, _ to: String = "" ) {
 //실행
 //사용자가 길이 값을 입력하고 변수에 저장하도록 한다.
 func startGame() {
-    var gameEnd = false
+    var isGameEnd = false
     
-    while !gameEnd {
+    while !isGameEnd {
         let inputData = readLine() ?? ""
         
         if inputData == "quit" || inputData == "q" {
-            gameEnd = true
+            isGameEnd = true
             return
         }
         let separatedInputData = inputData.components(separatedBy: " ")
